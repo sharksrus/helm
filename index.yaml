@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  web-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-08-15T12:49:53.109544-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 000576dc9a73464b855af7b08e1fcb232d00174b2763e3bdf787a2b6bbed3b54
+    name: web-app
+    type: application
+    urls:
+    - https://charts.punko.ps/web-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-08-15T12:49:53.108779-05:00"
