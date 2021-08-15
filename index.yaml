@@ -1,14 +1,15 @@
 apiVersion: v1
 entries:
-  web-app:
+  game-2048:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-15T12:49:53.109544-05:00"
+    created: "2021-08-15T17:03:38.18498-05:00"
     description: A Helm chart for Kubernetes
-    digest: 000576dc9a73464b855af7b08e1fcb232d00174b2763e3bdf787a2b6bbed3b54
-    name: web-app
+    digest: a943527d433ba16d00471e8b71e2c4d7ca0043a7671081f0f4a0e27d25d865fb
+    icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
+    name: game-2048
     type: application
     urls:
-    - https://charts.punko.ps/web-app-0.1.0.tgz
-    version: 0.1.0
-generated: "2021-08-15T12:49:53.108779-05:00"
+    - https://charts.punko.ps/game-2048-1.0.1.tgz
+    version: 1.0.1
+generated: "2021-08-15T17:03:38.184562-05:00"

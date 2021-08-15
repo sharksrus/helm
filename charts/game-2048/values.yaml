@@ -1,0 +1,76 @@
+app: 'game-2048'
+namespace: games
+replicaCount: 1
+image:
+  repository: vglen/2048
+  tag: 2
+  pullPolicy: Always 
+  resources:
+    limits:
+      cpu: 150m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  readinessProbe: {}
+  # Example (replace readinessProbe: {} with the following):
+  # readinessProbe:
+  #   httpGet:
+  #     path: /ready
+  #     port: 3000
+  #   initialDelaySeconds: 3
+  #   periodSeconds: 5
+  livenessProbe: {}
+  # Example (replace livenessProbe: {} with the following)::
+  # livenessProbe:
+  #   httpGet:
+  #     path: /live
+  #     port: 3000
+  #   initialDelaySeconds: 40
+  #   periodSeconds: 10  
+service:
+  type: ClusterIP
+  port: 8080
+
+container:
+  port: 8080
+
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+    cpu:
+      targetAverageUtilization: 70
+    memory:
+      targetAverageUtilization: 70
+
+ingress:
+  enabled: "true"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/acme-challenge-type: dns01
+    traefik.ingress.kubernetes.io/router.tls: "true"
+  hostname: '2048.bar.punko.ps'
+
+  tls:
+    hostname: '2048.bar.punko.ps'
+    secretName: '2048-bar-punko-ps-tls'
+
+letsEncrypt:
+  name: letsencrypt-prod
+  server: https://acme-v02.api.letsencrypt.org/directory
+  email: "john.doe@example.com"
+  host: '2048.example.com'
+  aws:
+    region: 'us-west-2'
+    hosted_zone: '123456'
+    accessKey: '123456'
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
