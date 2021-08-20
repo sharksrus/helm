@@ -13,7 +13,8 @@ spec:
     solvers:
     - selector:
         dnsNames:
-        - {{ .Values.letsEncrypt.host }}
+        - {{ .Values.letsEncrypt.host1 }}
+        - {{ .Values.letsEncrypt.host2 }}
       dns01:
         route53:
           region: {{ .Values.letsEncrypt.aws.region }}

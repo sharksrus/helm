@@ -62,7 +62,8 @@ letsEncrypt:
   name: letsencrypt-prod
   server: https://acme-v02.api.letsencrypt.org/directory
   email: "john.doe@example.com"
-  host: '2048.example.com'
+  host1: '2048.example.com'
+  host2: 'jenkins.example.com'
   aws:
     region: 'us-west-2'
     hosted_zone: '123456'
