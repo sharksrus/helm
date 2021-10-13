@@ -3,7 +3,7 @@ entries:
   game-2048:
   - apiVersion: v2
     appVersion: 2.0.1
-    created: "2021-08-20T10:44:56.183859-05:00"
+    created: "2021-10-13T15:43:32.724821-05:00"
     description: A helm chart for 2048
     digest: a79e77735cc383274365e03a5a4a4a6e1427c8d68e58c76c10366ed7e05e2692
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -14,7 +14,7 @@ entries:
     version: 2.0.1
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2021-08-20T10:44:56.183556-05:00"
+    created: "2021-10-13T15:43:32.724247-05:00"
     description: A helm chart for 2048
     digest: 0e92ce96112b9e808260f65b3afe7124a20c3b625d0709473442c388347ea3e6
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -25,7 +25,7 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-08-20T10:44:56.183084-05:00"
+    created: "2021-10-13T15:43:32.72353-05:00"
     description: A Helm chart for Kubernetes
     digest: a943527d433ba16d00471e8b71e2c4d7ca0043a7671081f0f4a0e27d25d865fb
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -34,4 +34,18 @@ entries:
     urls:
     - https://charts.punko.ps/game-2048-1.0.1.tgz
     version: 1.0.1
-generated: "2021-08-20T10:44:56.182546-05:00"
+  hugo-static-web:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-10-13T15:43:32.725213-05:00"
+    description: A Helm chart hugo sites
+    digest: 8a8369931c472a0da7790224750c6cbc4cc6e6db8a7c4df28cd3f947cfb5b856
+    maintainers:
+    - email: glen@glen.dev
+      name: vglen
+    name: hugo-static-web
+    type: application
+    urls:
+    - https://charts.punko.ps/hugo-static-web-1.0.0.tgz
+    version: 1.0.0
+generated: "2021-10-13T15:43:32.722004-05:00"
