@@ -1,0 +1,17 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: {{ .Values.github.organization }}-runner-autoscaler
+spec:
+  scaleDownDelaySecondsAfterScaleOut: {{ .Values.scaling.scaledown.delay }}
+  scaleTargetRef:
+    name: {{ .Values.github.organization }}-runner
+  minReplicas: {{ .Values.scaling.replicas.min }}
+  maxReplicas: {{ .Values.scaling.replicas.max }}
+  metrics:
+  - type: PercentageRunnersBusy
+    scaleUpThreshold: '0.75'    # The percentage of busy runners at which the number of desired runners are re-evaluated to scale up
+    scaleDownThreshold: '0.3'   # The percentage of busy runners at which the number of desired runners are re-evaluated to scale down
+    scaleUpFactor: '1.4'        # The scale up multiplier factor applied to desired count
+    scaleDownFactor: '0.7'      # The scale down multiplier factor applied to desired count

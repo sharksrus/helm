@@ -1,0 +1,30 @@
+---
+# dind:
+#   enabled: false
+#   runnercontainer: true
+
+github:
+  organization: ""
+  namespace: ""
+
+image:
+  repository: 'summerwind/actions-runner-dind'
+  tag: 'v2.283.3-ubuntu-20.04'
+
+
+replicas: 1
+
+resources: {}
+
+scaling:
+  replicas:
+    max: 15
+    min: 5
+  scaledown:
+    delay: 60
+
+serviceAccount:
+  create: true
+  annotations: {}
+
+tolerations: {}

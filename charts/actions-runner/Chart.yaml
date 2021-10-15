@@ -1,0 +1,9 @@
+apiVersion: v2
+name: actions-runner
+description: 'A helm chart for github-actions-runners'
+type: application
+version: 1.0.0
+appVersion: "2.283.3"
+maintainers:
+- email: glen@glen.dev
+  name: glen
