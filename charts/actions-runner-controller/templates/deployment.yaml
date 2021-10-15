@@ -18,6 +18,9 @@ spec:
       {{- end }}
       labels:
         {{- include "actions-runner-controller.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -31,16 +34,37 @@ spec:
       {{- end }}
       containers:
       - args:
-        - "--metrics-addr=127.0.0.1:8080"
+        {{- $metricsHost := .Values.metrics.proxy.enabled | ternary "127.0.0.1" "0.0.0.0" }}
+        {{- $metricsPort := .Values.metrics.proxy.enabled | ternary "8080" .Values.metrics.port }}
+        - "--metrics-addr={{ $metricsHost }}:{{ $metricsPort }}"
+        {{- if .Values.enableLeaderElection }}
         - "--enable-leader-election"
+        {{- end }}
+        {{- if .Values.leaderElectionId }}
+        - "--leader-election-id={{ .Values.leaderElectionId }}"
+        {{- end }}
         - "--sync-period={{ .Values.syncPeriod }}"
         - "--docker-image={{ .Values.image.dindSidecarRepositoryAndTag }}"
+        - "--runner-image={{ .Values.image.actionsRunnerRepositoryAndTag }}"
+        {{- if .Values.dockerRegistryMirror }}
+        - "--docker-registry-mirror={{ .Values.dockerRegistryMirror }}"
+        {{- end }}
         {{- if .Values.scope.singleNamespace }}
         - "--watch-namespace={{ default .Release.Namespace .Values.scope.watchNamespace }}"
+        {{- end }}
+        {{- if .Values.githubAPICacheDuration }}
+        - "--github-api-cache-duration={{ .Values.githubAPICacheDuration }}"
+        {{- end }}
+        {{- if .Values.logLevel }}
+        - "--log-level={{ .Values.logLevel }}"
         {{- end }}
         command:
         - "/manager"
         env:
+        {{- if .Values.githubEnterpriseServerURL  }}
+        - name: GITHUB_ENTERPRISE_URL
+          value: {{ .Values.githubEnterpriseServerURL }}
+        {{- end }}
         - name: GITHUB_TOKEN
           valueFrom:
             secretKeyRef:
@@ -65,13 +89,18 @@ spec:
         - name: {{ $key }}
           value: {{ $val | quote }}
         {{- end }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (cat "v" .Chart.AppVersion | replace " " "") }}"
         name: manager
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 9443
           name: webhook-server
           protocol: TCP
+        {{- if not .Values.metrics.proxy.enabled }}
+        - containerPort: {{ .Values.metrics.port }}
+          name: metrics-port
+          protocol: TCP
+        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         securityContext:
@@ -85,21 +114,23 @@ spec:
         - mountPath: /tmp/k8s-webhook-server/serving-certs
           name: cert
           readOnly: true
+      {{- if .Values.metrics.proxy.enabled }}
       - args:
-        - "--secure-listen-address=0.0.0.0:8443"
+        - "--secure-listen-address=0.0.0.0:{{ .Values.metrics.port }}"
         - "--upstream=http://127.0.0.1:8080/"
         - "--logtostderr=true"
         - "--v=10"
-        image: "{{ .Values.kube_rbac_proxy.image.repository }}:{{ .Values.kube_rbac_proxy.image.tag }}"
+        image: "{{ .Values.metrics.proxy.image.repository }}:{{ .Values.metrics.proxy.image.tag }}"
         name: kube-rbac-proxy
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: 8443
-          name: https
+        - containerPort: {{ .Values.metrics.port }}
+          name: metrics-port
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 12 }}
+      {{- end }}
       terminationGracePeriodSeconds: 10
       volumes:
       - name: secret
@@ -108,7 +139,7 @@ spec:
       - name: cert
         secret:
           defaultMode: 420
-          secretName: webhook-server-cert
+          secretName: {{ include "actions-runner-controller.servingCertName" . }}
       - name: tmp
         emptyDir: {}
       {{- with .Values.nodeSelector }}
@@ -121,5 +152,9 @@ spec:
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
         {{- toYaml . | nindent 8 }}
       {{- end }}
