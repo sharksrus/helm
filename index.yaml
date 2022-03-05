@@ -3,7 +3,7 @@ entries:
   actions-runner:
   - apiVersion: v2
     appVersion: 2.283.3
-    created: "2022-03-05T13:11:17.537095-06:00"
+    created: "2022-03-05T13:14:18.934005-06:00"
     description: A helm chart for github-actions-runners
     digest: beea952b2ef9a2d0fb1b3ed9337e7dda50a7733fd0c0e282094230e1c2d1f8cf
     maintainers:
@@ -17,7 +17,7 @@ entries:
   actions-runner-controller:
   - apiVersion: v2
     appVersion: 0.20.2
-    created: "2022-03-05T13:11:17.550495-06:00"
+    created: "2022-03-05T13:14:18.947495-06:00"
     description: A Kubernetes controller that operates self-hosted runners for GitHub
       Actions on your Kubernetes cluster.
     digest: 556105facd59a0110e496ba72b09a93f16a826bbb9468eca5981080dc7cc4c87
@@ -31,7 +31,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 0.20.2
-    created: "2022-03-05T13:11:17.545205-06:00"
+    created: "2022-03-05T13:14:18.942193-06:00"
     description: A Kubernetes controller that operates self-hosted runners for GitHub
       Actions on your Kubernetes cluster.
     digest: 159ef4db7933bca74a1573620166eb5f672f3a3d602fb527fdef710a3d909b49
@@ -45,7 +45,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 0.20.2
-    created: "2022-03-05T13:11:17.539057-06:00"
+    created: "2022-03-05T13:14:18.935997-06:00"
     description: A Kubernetes controller that operates self-hosted runners for GitHub
       Actions on your Kubernetes cluster.
     digest: 898b568e112de0bdbd9f9c53a9bc6e87c5cab2d2c222fd294c11db4399298988
@@ -60,7 +60,7 @@ entries:
   game-2048:
   - apiVersion: v2
     appVersion: 2.0.1
-    created: "2022-03-05T13:11:17.551577-06:00"
+    created: "2022-03-05T13:14:18.948534-06:00"
     description: A helm chart for 2048
     digest: a79e77735cc383274365e03a5a4a4a6e1427c8d68e58c76c10366ed7e05e2692
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -71,7 +71,7 @@ entries:
     version: 2.0.1
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2022-03-05T13:11:17.551095-06:00"
+    created: "2022-03-05T13:14:18.948095-06:00"
     description: A helm chart for 2048
     digest: 0e92ce96112b9e808260f65b3afe7124a20c3b625d0709473442c388347ea3e6
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -82,7 +82,7 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-03-05T13:11:17.550805-06:00"
+    created: "2022-03-05T13:14:18.947816-06:00"
     description: A Helm chart for Kubernetes
     digest: a943527d433ba16d00471e8b71e2c4d7ca0043a7671081f0f4a0e27d25d865fb
     icon: https://avatars.githubusercontent.com/u/82538217?s=200&v=4
@@ -94,7 +94,20 @@ entries:
   hugo-static-web:
   - apiVersion: v2
     appVersion: 2.2.0
-    created: "2022-03-05T13:11:17.553332-06:00"
+    created: "2022-03-05T13:14:18.950614-06:00"
+    description: A Helm chart hugo sites
+    digest: bd2ddcfd509d079dd28a66c9276b94cdc153576896fb41ad104d2193190ba232
+    maintainers:
+    - email: glen@glen.dev
+      name: vglen
+    name: hugo-static-web
+    type: application
+    urls:
+    - https://charts.punko.ps/hugo-static-web-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v2
+    appVersion: 2.2.0
+    created: "2022-03-05T13:14:18.950272-06:00"
     description: A Helm chart hugo sites
     digest: 0e97a1040b5eb7aae5051f869625076441393fc94136b57cb722b09a779073f6
     maintainers:
@@ -107,7 +120,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 2.2.0
-    created: "2022-03-05T13:11:17.553018-06:00"
+    created: "2022-03-05T13:14:18.949969-06:00"
     description: A Helm chart hugo sites
     digest: 769e860bbd974ca11fd782886352bce31dc1c5a6a68ca2990200c2b94eb2f63c
     maintainers:
@@ -120,7 +133,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 2.2.0
-    created: "2022-03-05T13:11:17.552719-06:00"
+    created: "2022-03-05T13:14:18.949697-06:00"
     description: A Helm chart hugo sites
     digest: e4f4b321fd6688e6451261e251e02d991c5e4172b5959687bc76e0d089e23ae4
     maintainers:
@@ -133,7 +146,7 @@ entries:
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2022-03-05T13:11:17.55234-06:00"
+    created: "2022-03-05T13:14:18.949399-06:00"
     description: A Helm chart hugo sites
     digest: b7291e059a8ed3f4f00621e76e97b5abfc145899d102a378ed4281d2131e698a
     maintainers:
@@ -146,7 +159,7 @@ entries:
     version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-03-05T13:11:17.552034-06:00"
+    created: "2022-03-05T13:14:18.949069-06:00"
     description: A Helm chart hugo sites
     digest: 8a8369931c472a0da7790224750c6cbc4cc6e6db8a7c4df28cd3f947cfb5b856
     maintainers:
@@ -157,4 +170,4 @@ entries:
     urls:
     - https://charts.punko.ps/hugo-static-web-1.0.0.tgz
     version: 1.0.0
-generated: "2022-03-05T13:11:17.536746-06:00"
+generated: "2022-03-05T13:14:18.933653-06:00"

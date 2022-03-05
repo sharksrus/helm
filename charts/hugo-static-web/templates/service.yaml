@@ -14,5 +14,6 @@ spec:
     - port: {{ .Values.service.status_port }}
       targetPort: {{ .Values.service.status_port }}
       protocol: TCP
+      name: status
   selector:
     {{- include "hugo-static-web.selectorLabels" . | nindent 4 }}
