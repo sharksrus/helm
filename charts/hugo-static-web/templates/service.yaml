@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,6 +12,22 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: {{ .Values.service.status_port }}
+      targetPort: {{ .Values.service.status_port }}
+      protocol: TCP
+      name: status
+  selector:
+    {{- include "hugo-static-web.selectorLabels" . | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'blog-status'
+  labels:
+    {{- include "hugo-static-web.labels" . | nindent 4 }}
+spec:
+  type: 'ClusterIP'
+  ports:
     - port: {{ .Values.service.status_port }}
       targetPort: {{ .Values.service.status_port }}
       protocol: TCP
