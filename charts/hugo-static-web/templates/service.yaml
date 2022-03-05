@@ -12,8 +12,7 @@ spec:
       protocol: TCP
       name: http
     - port: {{ .Values.service.status_port }}
-      targetPort: http
+      targetPort: {{ .Values.service.status_port }}
       protocol: TCP
-      name: http
   selector:
     {{- include "hugo-static-web.selectorLabels" . | nindent 4 }}
